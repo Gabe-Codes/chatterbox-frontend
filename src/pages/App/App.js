@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
-import * as userAPI from '../../services/user-api';
+import { Route } from 'react-router-dom';
+import userAPI from '../../services/user-api';
+import Navbar from '../../components/NavBar/NavBar';
 import UserListPage from '../../pages/UserListPage/UserListPage';
-import CreateUserPage from '../../pages/CreateUserPage/CreateUserPage';
+import SignupPage from '../../pages/SignupPage/SignupPage';
+import LoginPage from '../../pages/LoginPage/LoginPage';
 import './App.css';
 
 export default class App extends Component {
-	state = {
-		users: [],
-	};
+	constructor() {
+		super();
+
+		this.state = {
+			users: [],
+			user: userAPI.getUser(),
+		};
+	}
 
 	async componentDidMount() {
 		try {
@@ -19,23 +26,27 @@ export default class App extends Component {
 		}
 	}
 
-	handleCreateUser = async (newUserData) => {
+	handleLogout = () => {
 		try {
-			const newUser = await userAPI.create(newUserData);
-			this.setState(
-				(state) => ({
-					users: [...state.users, newUser],
-				}),
-				() => this.props.history.push('/')
-			);
+			userAPI.logout();
+			this.setState({ user: null });
 		} catch (err) {
 			console.log(err);
 		}
 	};
 
-	handleDeletePuppy = async (id) => {
+	handleSignupOrLogin = () => {
+		try {
+			this.setState({ user: userAPI.getUser() });
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	handleDeleteUser = async (id) => {
 		try {
 			await userAPI.deleteOne(id);
+			await this.handleLogout;
 			this.setState(
 				(state) => ({
 					users: state.users.filter((p) => p._id !== id),
@@ -51,21 +62,13 @@ export default class App extends Component {
 		return (
 			<div className="App">
 				<header className="App-header">
-					CHATTERBOX
-					<nav>
-						<NavLink exact to="/users">
-							USERS LIST
-						</NavLink>
-						&nbsp;&nbsp;&nbsp;
-						<NavLink exact to="/user-create">
-							CREATE USER
-						</NavLink>
-					</nav>
+					<span className="brand-logo">CHATTERBOX</span>
+					<Navbar user={this.state.user} handleLogout={this.handleLogout} />
 				</header>
 				<main>
 					<Route
 						exact
-						path="/"
+						path="/users"
 						render={({ history }) => (
 							<UserListPage
 								users={this.state.users}
@@ -75,9 +78,22 @@ export default class App extends Component {
 					/>
 					<Route
 						exact
-						path="/user-create"
+						path="/signup"
 						render={({ history }) => (
-							<CreateUserPage handleCreateUser={this.handleCreateUser} />
+							<SignupPage
+								history={history}
+								handleSignupOrLogin={this.handleSignupOrLogin}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/login"
+						render={({ history }) => (
+							<LoginPage
+								history={history}
+								handleSignupOrLogin={this.handleSignupOrLogin}
+							/>
 						)}
 					/>
 				</main>

@@ -1,19 +1,61 @@
+import tokenService from './tokenService';
+
 const BASE_URL = '/api/users';
 
-export function getAll() {
+function signup(user) {
+	return (
+		fetch(`${BASE_URL}/signup`, {
+			method: 'POST',
+			headers: new Headers({ 'Content-Type': 'application/json' }),
+			body: JSON.stringify(user),
+		})
+			.then((res) => {
+				if (res.ok) return res.json();
+				// Probably a duplicate email
+				throw new Error('Email already taken!');
+			})
+			// Parameter destructuring!
+			.then(({ token }) => tokenService.setToken(token))
+	);
+}
+
+function getAll() {
 	return fetch(BASE_URL).then((res) => res.json());
 }
 
-export function create(user) {
-	return fetch(BASE_URL, {
-		method: 'POST',
-		headers: { 'content-type': 'application/json' },
-		body: JSON.stringify(user),
-	}).then((res) => res.json());
+function getUser() {
+	return tokenService.getUserFromToken();
 }
 
-export function deleteOne(id) {
+function logout() {
+	tokenService.removeToken();
+}
+
+function login(creds) {
+	return fetch(`${BASE_URL}/login`, {
+		method: 'POST',
+		headers: new Headers({ 'Content-Type': 'application/json' }),
+		body: JSON.stringify(creds),
+	})
+		.then((res) => {
+			// Valid login if we have a status of 2xx (res.ok)
+			if (res.ok) return res.json();
+			throw new Error('Bad Credentials!');
+		})
+		.then(({ token }) => tokenService.setToken(token));
+}
+
+function deleteOne(id) {
 	return fetch(`${BASE_URL}/${id}`, {
 		method: 'DELETE',
 	}).then((res) => res.json());
 }
+
+export default {
+	signup,
+	getAll,
+	getUser,
+	logout,
+	login,
+	deleteOne,
+};
