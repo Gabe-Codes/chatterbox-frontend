@@ -2,21 +2,19 @@ import tokenService from './tokenService';
 
 const BASE_URL = '/api/users';
 
-function signup(user) {
-	return (
-		fetch(`${BASE_URL}/signup`, {
+async function signup(user) {
+		const response = await fetch(`${BASE_URL}/signup`, {
 			method: 'POST',
 			headers: new Headers({ 'Content-Type': 'application/json' }),
 			body: JSON.stringify(user),
-		})
-			.then((res) => {
-				if (res.ok) return res.json();
-				// Probably a duplicate email
-				throw new Error('Email already taken!');
-			})
-			// Parameter destructuring!
-			.then(({ token }) => tokenService.setToken(token))
-	);
+		});
+		const data = await response.json();
+		if (response.ok) {
+			tokenService.setToken(data.token.token);
+		} else {
+			const reason = Object.keys(data.keyValue)[0];
+			throw new Error(`${reason} already taken!`);
+		}
 }
 
 function getAll() {
@@ -51,6 +49,14 @@ function deleteOne(id) {
 	}).then((res) => res.json());
 }
 
+function update(user) {
+	return fetch(`${BASE_URL}/${user._id}`, {
+		method: 'PUT',
+		headers: { 'content-type': 'application/json' },
+		body: JSON.stringify(user),
+	}).then((res) => res.json());
+}
+
 export default {
 	signup,
 	getAll,
@@ -58,4 +64,5 @@ export default {
 	logout,
 	login,
 	deleteOne,
+	update,
 };

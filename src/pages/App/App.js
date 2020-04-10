@@ -5,6 +5,7 @@ import Navbar from '../../components/NavBar/NavBar';
 import UserListPage from '../../pages/UserListPage/UserListPage';
 import SignupPage from '../../pages/SignupPage/SignupPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
+import EditUserPage from '../../pages/EditUserPage/EditUserPage'
 import './App.css';
 
 export default class App extends Component {
@@ -58,6 +59,20 @@ export default class App extends Component {
 		}
 	};
 
+	handleUpdateUser = async (updatedUserData) => {
+		try {
+			const updatedUser = await userAPI.update(updatedUserData);
+			const newUsersArray = this.state.users.map((p) =>
+				p._id === updatedUser._id ? updatedUser : p
+			);
+			this.setState({ users: newUsersArray }, () =>
+				this.props.history.push('/')
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	render() {
 		return (
 			<div className="App">
@@ -93,6 +108,16 @@ export default class App extends Component {
 							<LoginPage
 								history={history}
 								handleSignupOrLogin={this.handleSignupOrLogin}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/edit"
+						render={({ history, location }) => (
+							<EditUserPage
+								handleUpdateUser={this.handleUpdateUser}
+								location={location}
 							/>
 						)}
 					/>

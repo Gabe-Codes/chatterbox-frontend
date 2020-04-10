@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function UserCard({ user, handleDeleteUser, handleLogout }) {
 	return (
@@ -15,6 +16,7 @@ export default function UserCard({ user, handleDeleteUser, handleLogout }) {
 				</dl>
 			</div>
 			<div>
+				<Link to={{ pathname: '/edit', state: { user } }}>EDIT</Link>
 				<button onClick={() => handleDeleteUser(user._id)}>DELETE</button>
 			</div>
 		</div>
