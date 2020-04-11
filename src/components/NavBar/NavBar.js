@@ -1,30 +1,94 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
+import 'materialize-css/dist/js/materialize.js';
+import 'materialize-css/dist/css/materialize.css';
 
 const NavBar = (props) => {
 	let nav = props.user ? (
-		<div>
-			<NavLink className="link" exact to="/users">
-				USERS LIST
-			</NavLink>
-			&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-			<NavLink className="link" to="" onClick={props.handleLogout}>
-				LOG OUT
-			</NavLink>
-			&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-			<span>WELCOME,&nbsp;{props.user.username.toUpperCase()}</span>
-		</div>
+		<ul className="sidenav sidenav-fixed invesible-top cyan lighten-2" id="mobile-nav">
+			<li>
+				<NavLink
+					style={{ color: 'white' }}
+					activeStyle={{
+						fontWeight: 'bold',
+						color: 'blue',
+					}}
+					exact
+					to="/"
+				>
+					CHATTERBOX
+				</NavLink>
+			</li>
+			<li>
+				<NavLink
+					style={{ color: 'white' }}
+					activeStyle={{
+						fontWeight: 'bold',
+						color: 'blue',
+					}}
+					exact
+					to="/{props.user._id}"
+				>
+					WELCOME,&nbsp;{props.user.username.toUpperCase()}
+				</NavLink>
+			</li>
+			<li>
+				<NavLink
+					style={{ color: 'white' }}
+					activeStyle={{
+						fontWeight: 'bold',
+						color: 'blue',
+					}}
+					exact
+					to="/users"
+				>
+					USERS LIST
+				</NavLink>
+			</li>
+			<li>
+				<NavLink
+					style={{ color: 'white' }}
+					activeStyle={{
+						fontWeight: 'bold',
+						color: 'red',
+					}}
+					to=""
+					onClick={props.handleLogout}
+				>
+					LOG OUT
+				</NavLink>
+			</li>
+		</ul>
 	) : (
-		<div>
-			<NavLink className="link" exact to="/login">
-				LOGIN
-			</NavLink>
-			&nbsp;&nbsp;|&nbsp;&nbsp;
-			<NavLink className="link" exact to="/signup">
-				SIGNUP
-			</NavLink>
-		</div>
+		<ul className="sidenav sidenav-fixed invesible-top cyan lighten-2" id="mobile-nav">
+			<li>
+				<NavLink
+					style={{ color: 'white' }}
+					activeStyle={{
+						fontWeight: 'bold',
+						color: 'blue',
+					}}
+					exact
+					to="/login"
+				>
+					LOGIN
+				</NavLink>
+			</li>
+			<li>
+				<NavLink
+					style={{ color: 'white' }}
+					activeStyle={{
+						fontWeight: 'bold',
+						color: 'blue',
+					}}
+					exact
+					to="/signup"
+				>
+					SIGNUP
+				</NavLink>
+			</li>
+		</ul>
 	);
 
 	return <div>{nav}</div>;

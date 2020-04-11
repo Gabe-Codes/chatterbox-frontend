@@ -44,12 +44,29 @@ export default class SignupForm extends Component {
 
 	render() {
 		return (
-			<div>
-				<header>Sign Up</header>
-				<form onSubmit={this.handleSubmit}>
-					<div>
-						<div>
+			<div className="row">
+				<h2>Sign Up</h2>
+				<form className="col s12" onSubmit={this.handleSubmit}>
+					<div className="row">
+						<div className="input-field col s12">
 							<input
+								className="validate"
+								type="email"
+								placeholder="Email"
+								value={this.state.email}
+								name="email"
+								onChange={this.handleChange}
+							/>
+							<span
+								class="helper-text"
+								data-error="Invalid Email Address"
+							></span>
+						</div>
+					</div>
+					<div className="row">
+						<div className="input-field col s12">
+							<input
+								className="validate"
 								type="text"
 								placeholder="Username"
 								value={this.state.username}
@@ -58,19 +75,8 @@ export default class SignupForm extends Component {
 							/>
 						</div>
 					</div>
-					<div>
-						<div>
-							<input
-								type="email"
-								placeholder="Email"
-								value={this.state.email}
-								name="email"
-								onChange={this.handleChange}
-							/>
-						</div>
-					</div>
-					<div>
-						<div>
+					<div className="row">
+						<div className="input-field col s12">
 							<input
 								type="password"
 								placeholder="Password"
@@ -80,8 +86,8 @@ export default class SignupForm extends Component {
 							/>
 						</div>
 					</div>
-					<div>
-						<div>
+					<div className="row">
+						<div className="input-field col s12">
 							<input
 								type="password"
 								placeholder="Confirm Password"
@@ -93,9 +99,16 @@ export default class SignupForm extends Component {
 					</div>
 					<div>
 						<div>
-							<button disabled={this.isFormInvalid()}>Sign Up</button>
+							<button
+								className="waves-effect waves-light btn"
+								disabled={this.isFormInvalid()}
+							>
+								Sign Up
+							</button>
 							&nbsp;&nbsp;
-							<Link to="/">Cancel</Link>
+							<button className="waves-effect waves-light btn deep-purple darken-1">
+								<Link style={{color: 'white'}} to="/">Cancel</Link>
+							</button>
 						</div>
 					</div>
 				</form>

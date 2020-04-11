@@ -14,7 +14,7 @@ export default class SignupPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <SignupForm {...this.props} updateMessage={this.updateMessage} />
         <p>{this.state.message}</p>
       </div>

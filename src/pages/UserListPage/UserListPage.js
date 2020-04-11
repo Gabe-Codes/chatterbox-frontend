@@ -6,7 +6,7 @@ export default function UserListPage(props) {
 	return (
 		<>
 			<h1>User List</h1>
-			<div className="UserListPage-grid">
+			<div className="wrapper">
 				{props.users.map((user) => (
 					<UserCard
 						key={user._id}

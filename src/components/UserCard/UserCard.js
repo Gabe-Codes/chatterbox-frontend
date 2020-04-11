@@ -3,21 +3,18 @@ import { Link } from 'react-router-dom';
 
 export default function UserCard({ user, handleDeleteUser, handleLogout }) {
 	return (
-		<div>
-			<div>
-				<h3>{user.username}</h3>
-			</div>
-			<div>
-				<dl>
-					<dt>Display Name</dt>
-					<dd>{user.displayName}</dd>
-					<dt>Email</dt>
-					<dd>{user.email}</dd>
-				</dl>
-			</div>
-			<div>
-				<Link to={{ pathname: '/edit', state: { user } }}>EDIT</Link>
-				<button onClick={() => handleDeleteUser(user._id)}>DELETE</button>
+		<div className="row">
+			<div className="col s12 m6">
+				<div classNameclass="card blue-grey darken-1">
+					<div className="card-content white-text">
+						<h3 className="card-title">{user.displayName}</h3>
+					</div>
+					<div className="card-action">
+						<Link to={{ pathname: '/details', state: { user } }}>DETAILS</Link>
+						<Link to={{ pathname: '/edit', state: { user } }}>EDIT</Link>
+						<button onClick={() => handleDeleteUser(user._id)}>DELETE</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

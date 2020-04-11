@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './LoginPage.css';
+import { Link } from 'react-router-dom';
 import userAPI from '../../services/user-api';
 
 export default class LoginPage extends Component {
@@ -32,12 +32,13 @@ export default class LoginPage extends Component {
 
 	render() {
 		return (
-			<div>
-				<header>Log In</header>
-				<form onSubmit={this.handleSubmit}>
-					<div>
-						<div>
+			<div className="wrapper row">
+				<h2>Log In</h2>
+				<form className="col s12" onSubmit={this.handleSubmit}>
+					<div className="row">
+						<div className="input-field col s12">
 							<input
+								className="validate"
 								type="text"
 								placeholder="Username"
 								value={this.state.username}
@@ -46,9 +47,10 @@ export default class LoginPage extends Component {
 							/>
 						</div>
 					</div>
-					<div>
-						<div>
+					<div className="row">
+						<div className="input-field col s12">
 							<input
+								className="validate"
 								type="password"
 								placeholder="Password"
 								value={this.state.pw}
@@ -59,9 +61,13 @@ export default class LoginPage extends Component {
 					</div>
 					<div>
 						<div>
-							<button>Log In</button>
+							<button className="waves-effect waves-light btn deep-purple darken-1">
+								Log In
+							</button>
 							&nbsp;&nbsp;&nbsp;
-							<Link to="/">Cancel</Link>
+							<button className="waves-effect waves-light btn deep-purple darken-1">
+								<Link style={{color: 'white'}} to="/">Cancel</Link>
+							</button>
 						</div>
 					</div>
 				</form>

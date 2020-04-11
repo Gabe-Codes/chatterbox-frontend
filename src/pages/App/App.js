@@ -5,7 +5,10 @@ import Navbar from '../../components/NavBar/NavBar';
 import UserListPage from '../../pages/UserListPage/UserListPage';
 import SignupPage from '../../pages/SignupPage/SignupPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
-import EditUserPage from '../../pages/EditUserPage/EditUserPage'
+import EditUserPage from '../../pages/EditUserPage/EditUserPage';
+import UserDetailsPage from '../../pages/UserDetailsPage/UserDetailsPage';
+import 'materialize-css/dist/js/materialize.js';
+import 'materialize-css/dist/css/materialize.css';
 import './App.css';
 
 export default class App extends Component {
@@ -76,8 +79,7 @@ export default class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<header className="App-header">
-					<span className="brand-logo">CHATTERBOX</span>
+				<header>
 					<Navbar user={this.state.user} handleLogout={this.handleLogout} />
 				</header>
 				<main>
@@ -119,6 +121,13 @@ export default class App extends Component {
 								handleUpdateUser={this.handleUpdateUser}
 								location={location}
 							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/details"
+						render={({ location }) => (
+							<UserDetailsPage location={location} />
 						)}
 					/>
 				</main>
