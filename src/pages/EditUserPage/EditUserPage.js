@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
-import {  } from 'react-materialize';
+import {} from 'react-materialize';
 
 export default class EditUserPage extends Component {
 	state = {
@@ -31,48 +31,62 @@ export default class EditUserPage extends Component {
 	render() {
 		return (
 			<>
-				<h1>Edit User</h1>
-				<form
-					ref={this.formRef}
-					autoComplete="off"
-					onSubmit={this.handleSubmit}
-				>
-					<div>
-						<label>Email: </label>
-						<input
-							type="email"
-							name="email"
-							value={this.state.formData.email}
-							onChange={this.handleChange}
-							required
-						/>
-					</div>
-					<div>
-						<label>Username: </label>
-						<input
-							type="text"
-							name="username"
-							value={this.state.formData.username}
-							onChange={this.handleChange}
-							required
-						/>
-					</div>
-					<div>
-						<label>Display Name: </label>
-						<input
-							type="text"
-							name="displayName"
-							value={this.state.formData.displayName}
-							onChange={this.handleChange}
-							required
-						/>
-					</div>
-					<button type="submit" disabled={this.state.invalidForm}>
-						SAVE USER
-					</button>
-					&nbsp;&nbsp;
-					<Link to="/">CANCEL</Link>
-				</form>
+				<div className="wrapper row">
+					<h1>Edit User</h1>
+					<form
+					className="col s12"
+						ref={this.formRef}
+						autoComplete="off"
+						onSubmit={this.handleSubmit}
+					>
+						<div className="input-field col s12">
+							<label>Email: </label>
+							<input
+							className="validate"
+								type="email"
+								name="email"
+								value={this.state.formData.email}
+								onChange={this.handleChange}
+								required
+							/>
+							<span
+								class="helper-text"
+								data-error="Invalid Email Address"
+							></span>
+						</div>
+						<div className="input-field col s12">
+							<label>Username: </label>
+							<input
+								type="text"
+								name="username"
+								value={this.state.formData.username}
+								onChange={this.handleChange}
+								required
+							/>
+						</div>
+						<div className="input-field col s12">
+							<label>Display Name: </label>
+							<input
+								type="text"
+								name="displayName"
+								value={this.state.formData.displayName}
+								onChange={this.handleChange}
+								required
+							/>
+						</div>
+						<button
+							className="waves-effect waves-light btn"
+							type="submit"
+							disabled={this.state.invalidForm}
+						>
+							SAVE USER
+						</button>
+						&nbsp;&nbsp;
+						<button className="waves-effect waves-light btn deep-purple darken-1">
+						<Link style={{color: 'white'}} to="/">CANCEL</Link>
+						</button>
+					</form>
+				</div>
 			</>
 		);
 	}

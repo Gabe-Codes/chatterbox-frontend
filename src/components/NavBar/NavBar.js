@@ -28,7 +28,7 @@ const NavBar = (props) => {
 						color: 'blue',
 					}}
 					exact
-					to="/{props.user._id}"
+					to={{ pathname: '/details', state: props.user }}
 				>
 					WELCOME,&nbsp;{props.user.username.toUpperCase()}
 				</NavLink>

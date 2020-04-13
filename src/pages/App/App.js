@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import userAPI from '../../services/user-api';
+import lobbyAPI from '../../services/lobby-api';
+import channelAPI from '../../services/channel-api';
 import Navbar from '../../components/NavBar/NavBar';
 import UserListPage from '../../pages/UserListPage/UserListPage';
 import SignupPage from '../../pages/SignupPage/SignupPage';
@@ -18,6 +20,8 @@ export default class App extends Component {
 		this.state = {
 			users: [],
 			user: userAPI.getUser(),
+			lobbies: [],
+			channels: []
 		};
 	}
 
@@ -25,6 +29,10 @@ export default class App extends Component {
 		try {
 			const users = await userAPI.getAll();
 			this.setState({ users });
+			const lobbies = await lobbyAPI.getAll();
+			this.setState({ lobbies });
+			const channels = await channelAPI.getAll();
+			this.setState({ channels });
 		} catch (err) {
 			console.log(err);
 		}
@@ -69,6 +77,90 @@ export default class App extends Component {
 				p._id === updatedUser._id ? updatedUser : p
 			);
 			this.setState({ users: newUsersArray }, () =>
+				this.props.history.push('/')
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	handleAddLobby = async (newLobbyData) => {
+		try {
+			const newLobby = await lobbyAPI.create(newLobbyData);
+			this.setState(
+				(state) => ({
+					lobbies: [...state.lobbies, newLobby],
+				}),
+				() => this.props.history.push('/')
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	handleDeleteLobby = async (id) => {
+		try {
+			await lobbyAPI.deleteOne(id);
+			this.setState(
+				(state) => ({
+					lobbies: state.lobbies.filter((p) => p._id !== id),
+				}),
+				() => this.props.history.push('/')
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	handleUpdateLobby = async (updatedLobbyData) => {
+		try {
+			const updatedLobby = await lobbyAPI.update(updatedLobbyData);
+			const newLobbiesArray = this.state.lobbies.map((p) =>
+				p._id === updatedLobby._id ? updatedLobby : p
+			);
+			this.setState({ channels: newLobbiesArray }, () =>
+				this.props.history.push('/')
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	handleAddChannel = async (newChannelData) => {
+		try {
+			const newChannel = await channelAPI.create(newChannelData);
+			this.setState(
+				(state) => ({
+					channels: [...state.channels, newChannel],
+				}),
+				() => this.props.history.push('/')
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	handleDeleteChannel = async (id) => {
+		try {
+			await channelAPI.deleteOne(id);
+			this.setState(
+				(state) => ({
+					channels: state.channels.filter((p) => p._id !== id),
+				}),
+				() => this.props.history.push('/')
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	handleUpdateChannel = async (updatedChannelData) => {
+		try {
+			const updatedChannel = await channelAPI.update(updatedChannelData);
+			const newChannelsArray = this.state.channels.map((p) =>
+				p._id === updatedChannel._id ? updatedChannel : p
+			);
+			this.setState({ channels: newChannelsArray }, () =>
 				this.props.history.push('/')
 			);
 		} catch (err) {
