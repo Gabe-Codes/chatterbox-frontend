@@ -11,6 +11,8 @@ export default function UserCard({ user, handleDeleteUser }) {
 					</div>
 					<div className="card-action">
 						<Link to="/users">RETURN TO LIST</Link>
+						<Link to={{ pathname: '/edit', state: { user } }}>EDIT</Link>
+						<button onClick={() => handleDeleteUser(user._id)}>DELETE</button>
 					</div>
 				</div>
 			</div>

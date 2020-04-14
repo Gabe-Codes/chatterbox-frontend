@@ -22,8 +22,8 @@ export default class App extends Component {
 		super();
 
 		this.state = {
-			users: [],
 			user: userAPI.getUser(),
+			users: [],
 			lobbies: [],
 			channels: [],
 		};
@@ -182,12 +182,7 @@ export default class App extends Component {
 					<Route
 						exact
 						path="/users"
-						render={({ history }) => (
-							<UserListPage
-								users={this.state.users}
-								handleDeleteUser={this.handleDeleteUser}
-							/>
-						)}
+						render={({ history }) => <UserListPage users={this.state.users} />}
 					/>
 					<Route
 						exact
@@ -214,15 +209,20 @@ export default class App extends Component {
 						path="/edit"
 						render={({ history, location }) => (
 							<EditUserPage
-								handleUpdateUser={this.handleUpdateUser}
 								location={location}
+								handleUpdateUser={this.handleUpdateUser}
 							/>
 						)}
 					/>
 					<Route
 						exact
 						path="/details"
-						render={({ location }) => <UserDetailsPage location={location} />}
+						render={({ location }) => (
+							<UserDetailsPage
+								location={location}
+								handleDeleteUser={this.handleDeleteUser}
+							/>
+						)}
 					/>
 					<Route
 						exact

@@ -7,12 +7,13 @@ export default function UserListItem({ user, handleDeleteUser }) {
 			<div className="col s12 m6">
 				<div className="card indigo darken-1">
 					<div className="card-content white-text">
-						<h3 className="card-title">{user.displayName}</h3>
-					</div>
-					<div className="card-action">
-						<Link to={{ pathname: '/details', state: { user } }}>DETAILS</Link>
-						<Link to={{ pathname: '/edit', state: { user } }}>EDIT</Link>
-						<button onClick={() => handleDeleteUser(user._id)}>DELETE</button>
+						<Link
+							className="card-title"
+							style={{ color: 'white' }}
+							to={{ pathname: '/details', state: { user } }}
+						>
+							{user.displayName}
+						</Link>
 					</div>
 				</div>
 			</div>

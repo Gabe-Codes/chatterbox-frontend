@@ -82,7 +82,7 @@ export default class EditUserPage extends Component {
 						</button>
 						&nbsp;&nbsp;
 						<button className="waves-effect waves-light btn deep-purple darken-1">
-						<Link style={{color: 'white'}} to="/">CANCEL</Link>
+						<Link style={{color: 'white'}} to={{ pathname: '/users' }}>CANCEL</Link>
 						</button>
 					</form>
 				</div>

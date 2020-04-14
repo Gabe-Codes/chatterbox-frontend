@@ -7,7 +7,7 @@ export default function UserDetailsPage(props) {
 		<>
 			<div className="wrapper">
 				<h1>User Details</h1>
-				<UserCard key={user._id} user={user} />
+				<UserCard key={user._id} user={user} handleDeleteUser={props.handleDeleteUser}/>
 			</div>
 		</>
 	);

@@ -11,7 +11,6 @@ export default function UserListPage(props) {
 					<UserListItem
 						key={user._id}
 						user={user}
-						handleDeleteUser={props.handleDeleteUser}
 					/>
 				))}
 			</div>
