@@ -9,6 +9,10 @@ import SignupPage from '../../pages/SignupPage/SignupPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import EditUserPage from '../../pages/EditUserPage/EditUserPage';
 import UserDetailsPage from '../../pages/UserDetailsPage/UserDetailsPage';
+import LobbyDetailsPage from '../../pages/LobbyDetailsPage/LobbyDetailsPage';
+import LobbyListPage from '../../pages/LobbyListPage/LobbyListPage';
+import AddLobbyPage from '../../pages/AddLobbyPage/AddLobbyPage';
+import EditLobbyPage from '../../pages/EditLobbyPage/EditLobbyPage';
 import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
 import './App.css';
@@ -21,7 +25,7 @@ export default class App extends Component {
 			users: [],
 			user: userAPI.getUser(),
 			lobbies: [],
-			channels: []
+			channels: [],
 		};
 	}
 
@@ -218,9 +222,42 @@ export default class App extends Component {
 					<Route
 						exact
 						path="/details"
-						render={({ location }) => (
-							<UserDetailsPage location={location} />
+						render={({ location }) => <UserDetailsPage location={location} />}
+					/>
+					<Route
+						exact
+						path="/servers"
+						render={({ history }) => (
+							<LobbyListPage
+								lobbies={this.state.lobbies}
+								handleDeleteLobby={this.handleDeleteLobby}
+							/>
 						)}
+					/>
+					<Route
+						exact
+						path="/new-server"
+						render={({ history }) => (
+							<AddLobbyPage
+								user={this.state.user}
+								handleAddLobby={this.handleAddLobby}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/edit-server"
+						render={({ history, location }) => (
+							<EditLobbyPage
+								handleUpdateLobby={this.handleUpdateLobby}
+								location={location}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/details-server"
+						render={({ location }) => <LobbyDetailsPage location={location} />}
 					/>
 				</main>
 			</div>

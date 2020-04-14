@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom';
 import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
 
-export default class EditUserPage extends Component {
+export default class EditLobbyPage extends Component {
 	state = {
 		invalidForm: false,
-		formData: this.props.location.state.user,
+		formData: this.props.location.state.lobby,
 	};
 
 	formRef = React.createRef();
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.handleUpdateUser(this.state.formData);
+		this.props.handleUpdateLobby(this.state.formData);
 	};
 
 	handleChange = (e) => {
@@ -31,7 +31,7 @@ export default class EditUserPage extends Component {
 		return (
 			<>
 				<div className="wrapper row">
-					<h1>Edit User</h1>
+					<h1>Edit Lobby</h1>
 					<form
 					className="col s12"
 						ref={this.formRef}
@@ -39,36 +39,12 @@ export default class EditUserPage extends Component {
 						onSubmit={this.handleSubmit}
 					>
 						<div className="input-field col s12">
-							<label>Email: </label>
+							<label>Name: </label>
 							<input
 							className="validate"
-								type="email"
-								name="email"
-								value={this.state.formData.email}
-								onChange={this.handleChange}
-								required
-							/>
-							<span
-								class="helper-text"
-								data-error="Invalid Email Address"
-							></span>
-						</div>
-						<div className="input-field col s12">
-							<label>Username: </label>
-							<input
 								type="text"
-								name="username"
-								value={this.state.formData.username}
-								onChange={this.handleChange}
-								required
-							/>
-						</div>
-						<div className="input-field col s12">
-							<label>Display Name: </label>
-							<input
-								type="text"
-								name="displayName"
-								value={this.state.formData.displayName}
+								name="name"
+								value={this.state.formData.name}
 								onChange={this.handleChange}
 								required
 							/>
@@ -78,7 +54,7 @@ export default class EditUserPage extends Component {
 							type="submit"
 							disabled={this.state.invalidForm}
 						>
-							SAVE USER
+							SAVE SERVER
 						</button>
 						&nbsp;&nbsp;
 						<button className="waves-effect waves-light btn deep-purple darken-1">

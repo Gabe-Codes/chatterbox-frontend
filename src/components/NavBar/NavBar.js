@@ -51,6 +51,32 @@ const NavBar = (props) => {
 					style={{ color: 'white' }}
 					activeStyle={{
 						fontWeight: 'bold',
+						color: 'blue',
+					}}
+					exact
+					to="/servers"
+				>
+					SERVERS LIST
+				</NavLink>
+			</li>
+			<li>
+				<NavLink
+					style={{ color: 'white' }}
+					activeStyle={{
+						fontWeight: 'bold',
+						color: 'blue',
+					}}
+					exact
+					to="/new-server"
+				>
+					CREATE SERVER
+				</NavLink>
+			</li>
+			<li>
+				<NavLink
+					style={{ color: 'white' }}
+					activeStyle={{
+						fontWeight: 'bold',
 						color: 'red',
 					}}
 					to=""
