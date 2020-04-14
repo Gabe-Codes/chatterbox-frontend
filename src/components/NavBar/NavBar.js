@@ -1,12 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
-import 'materialize-css/dist/js/materialize.js';
-import 'materialize-css/dist/css/materialize.css';
 
 const NavBar = (props) => {
-	console.log(props.user)
-	const user = props.user
 	let nav = props.user ? (
 		<ul className="sidenav sidenav-fixed invesible-top cyan lighten-2" id="mobile-nav">
 			<li>
@@ -30,7 +26,7 @@ const NavBar = (props) => {
 						color: 'blue',
 					}}
 					exact
-					to={{ pathname: '/details', state: { user } }}
+					to={{ pathname: '/details', state: props.user }}
 				>
 					WELCOME,&nbsp;{props.user.username.toUpperCase()}
 				</NavLink>

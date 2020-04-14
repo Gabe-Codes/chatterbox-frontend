@@ -2,7 +2,7 @@ import React from 'react';
 import UserCard from '../../components/UserCard/UserCard';
 
 export default function UserDetailsPage(props) {
-	const user = props.location.state.user;
+	const user = props.location.state.user || props.location.state;
 	return (
 		<>
 			<div className="wrapper">

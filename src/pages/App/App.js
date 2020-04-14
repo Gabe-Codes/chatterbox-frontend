@@ -13,8 +13,9 @@ import LobbyDetailsPage from '../../pages/LobbyDetailsPage/LobbyDetailsPage';
 import LobbyListPage from '../../pages/LobbyListPage/LobbyListPage';
 import AddLobbyPage from '../../pages/AddLobbyPage/AddLobbyPage';
 import EditLobbyPage from '../../pages/EditLobbyPage/EditLobbyPage';
-import 'materialize-css/dist/js/materialize.js';
-import 'materialize-css/dist/css/materialize.css';
+import ChannelDetailsPage from '../../pages/ChannelDetailsPage/ChannelDetailsPage';
+import AddChannelPage from '../../pages/AddChannelPage/AddChannelPage';
+import EditChannelPage from '../../pages/EditChannelPage/EditChannelPage';
 import './App.css';
 
 export default class App extends Component {
@@ -22,7 +23,7 @@ export default class App extends Component {
 		super();
 
 		this.state = {
-			user: userAPI.getUser(),
+			currentUser: userAPI.getUser(),
 			users: [],
 			lobbies: [],
 			channels: [],
@@ -45,7 +46,7 @@ export default class App extends Component {
 	handleLogout = () => {
 		try {
 			userAPI.logout();
-			this.setState({ user: null });
+			this.setState({ currentUser: null });
 		} catch (err) {
 			console.log(err);
 		}
@@ -53,7 +54,7 @@ export default class App extends Component {
 
 	handleSignupOrLogin = () => {
 		try {
-			this.setState({ user: userAPI.getUser() });
+			this.setState({ currentUser: userAPI.getUser() });
 		} catch (err) {
 			console.log(err);
 		}
@@ -176,7 +177,10 @@ export default class App extends Component {
 		return (
 			<div className="App">
 				<header>
-					<Navbar user={this.state.user} handleLogout={this.handleLogout} />
+					<Navbar
+						user={this.state.currentUser}
+						handleLogout={this.handleLogout}
+					/>
 				</header>
 				<main>
 					<Route
@@ -257,7 +261,40 @@ export default class App extends Component {
 					<Route
 						exact
 						path="/details-server"
-						render={({ location }) => <LobbyDetailsPage location={location} />}
+						render={({ location }) => (
+							<LobbyDetailsPage
+								channels={this.state.channels}
+								handleDeleteChannel={this.handleDeleteChannel}
+								location={location}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/new-channel"
+						render={({ history, location }) => (
+							<AddChannelPage
+								handleAddChannel={this.handleAddChannel}
+								location={location}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/edit-channel"
+						render={({ history, location }) => (
+							<EditChannelPage
+								handleUpdateChannel={this.handleUpdateChannel}
+								location={location}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/details-channel"
+						render={({ location }) => (
+							<ChannelDetailsPage location={location} />
+						)}
 					/>
 				</main>
 			</div>
