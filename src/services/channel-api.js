@@ -1,4 +1,5 @@
-const BASE_URL = '/api/channels';
+// const BASE_URL = '/api/channels';
+const BASE_URL = 'https://chatterbox-back.herokuapp.com/api/channels';
 
 function getAll() {
 	return fetch(BASE_URL).then((res) => res.json());

@@ -1,4 +1,5 @@
-const BASE_URL = '/api/messages';
+// const BASE_URL = '/api/messages';
+const BASE_URL = 'https://chatterbox-back.herokuapp.com/api/messages';
 
 function create(message) {
 	return fetch(BASE_URL, {
