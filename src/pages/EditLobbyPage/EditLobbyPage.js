@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import 'materialize-css/dist/js/materialize.js';
 import 'materialize-css/dist/css/materialize.css';
-
 export default class EditLobbyPage extends Component {
 	state = {
 		invalidForm: false,
@@ -30,10 +29,11 @@ export default class EditLobbyPage extends Component {
 	render() {
 		return (
 			<>
+				<div></div>
 				<div className="wrapper row">
 					<h1>Edit Lobby</h1>
 					<form
-					className="col s12"
+						className="col s12"
 						ref={this.formRef}
 						autoComplete="off"
 						onSubmit={this.handleSubmit}
@@ -41,7 +41,7 @@ export default class EditLobbyPage extends Component {
 						<div className="input-field col s12">
 							<label>Name: </label>
 							<input
-							className="validate"
+								className="validate"
 								type="text"
 								name="name"
 								value={this.state.formData.name}
@@ -58,7 +58,9 @@ export default class EditLobbyPage extends Component {
 						</button>
 						&nbsp;&nbsp;
 						<button className="waves-effect waves-light btn deep-purple darken-1">
-						<Link style={{color: 'white'}} to="/">CANCEL</Link>
+							<Link style={{ color: 'white' }} to="/">
+								CANCEL
+							</Link>
 						</button>
 					</form>
 				</div>

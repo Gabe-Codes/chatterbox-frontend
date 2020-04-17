@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import userAPI from '../../services/user-api';
 import lobbyAPI from '../../services/lobby-api';
 import channelAPI from '../../services/channel-api';
+import messageAPI from '../../services/message-api';
 import Navbar from '../../components/NavBar/NavBar';
 import UserListPage from '../../pages/UserListPage/UserListPage';
 import SignupPage from '../../pages/SignupPage/SignupPage';
@@ -10,7 +11,6 @@ import LoginPage from '../../pages/LoginPage/LoginPage';
 import EditUserPage from '../../pages/EditUserPage/EditUserPage';
 import UserDetailsPage from '../../pages/UserDetailsPage/UserDetailsPage';
 import LobbyDetailsPage from '../../pages/LobbyDetailsPage/LobbyDetailsPage';
-import LobbyListPage from '../../pages/LobbyListPage/LobbyListPage';
 import AddLobbyPage from '../../pages/AddLobbyPage/AddLobbyPage';
 import EditLobbyPage from '../../pages/EditLobbyPage/EditLobbyPage';
 import ChannelDetailsPage from '../../pages/ChannelDetailsPage/ChannelDetailsPage';
@@ -123,7 +123,7 @@ export default class App extends Component {
 			const newLobbiesArray = this.state.lobbies.map((p) =>
 				p._id === updatedLobby._id ? updatedLobby : p
 			);
-			this.setState({ channels: newLobbiesArray }, () =>
+			this.setState({ lobbies: newLobbiesArray }, () =>
 				this.props.history.push('/')
 			);
 		} catch (err) {
@@ -173,6 +173,48 @@ export default class App extends Component {
 		}
 	};
 
+	handleAddMessage = async (newMessageData) => {
+		try {
+			const newMessage = await messageAPI.create(newMessageData);
+			this.setState(
+				(state) => ({
+					messages: [...state.messages, newMessage],
+				}),
+				() => this.props.history.push('/')
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	handleDeleteMessage = async (id) => {
+		try {
+			await messageAPI.deleteOne(id);
+			this.setState(
+				(state) => ({
+					messages: state.messages.filter((p) => p._id !== id),
+				}),
+				() => this.props.history.push('/')
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	handleUpdateMessage = async (updatedMessageData) => {
+		try {
+			const updatedMessage = await messageAPI.update(updatedMessageData);
+			const newMessagesArray = this.state.messages.map((p) =>
+				p._id === updatedMessage._id ? updatedMessage : p
+			);
+			this.setState({ messages: newMessagesArray }, () =>
+				this.props.history.push('/')
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	render() {
 		return (
 			<div className="App">
@@ -180,6 +222,7 @@ export default class App extends Component {
 					<Navbar
 						user={this.state.currentUser}
 						handleLogout={this.handleLogout}
+						lobbies={this.state.lobbies}
 					/>
 				</header>
 				<main>
@@ -230,16 +273,6 @@ export default class App extends Component {
 					/>
 					<Route
 						exact
-						path="/servers"
-						render={({ history }) => (
-							<LobbyListPage
-								lobbies={this.state.lobbies}
-								handleDeleteLobby={this.handleDeleteLobby}
-							/>
-						)}
-					/>
-					<Route
-						exact
 						path="/new-server"
 						render={({ history }) => (
 							<AddLobbyPage
@@ -264,7 +297,7 @@ export default class App extends Component {
 						render={({ location }) => (
 							<LobbyDetailsPage
 								channels={this.state.channels}
-								handleDeleteChannel={this.handleDeleteChannel}
+								handleDeleteLobby={this.handleDeleteLobby}
 								location={location}
 							/>
 						)}
@@ -293,7 +326,13 @@ export default class App extends Component {
 						exact
 						path="/details-channel"
 						render={({ location }) => (
-							<ChannelDetailsPage location={location} />
+							<ChannelDetailsPage
+								location={location}
+								handleDeleteChannel={this.handleDeleteChannel}
+								handleAddMessage={this.handleAddMessage}
+								handleDeleteMessage={this.handleDeleteMessage}
+								user={this.state.currentUser}
+							/>
 						)}
 					/>
 				</main>

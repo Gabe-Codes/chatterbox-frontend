@@ -1,43 +1,50 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LobbyCard from '../../components/LobbyCard/LobbyCard';
-import ChannelCard from '../../components/ChannelCard/ChannelCard';
+import './LobbyDetailsPage.css';
+import ChannelNavBar from '../../components/ChannelNavBar/ChannelNavBar';
+import { Dropdown } from 'react-materialize';
 
 export default function LobbyDetailsPage(props) {
 	const lobby = props.location.state.lobby;
-
-	function lobbyChild() {
-		console.log(lobby._id)
-		return props.channels.map((channel) =>
-			channel.lobby === lobby._id ? (
-				<ChannelCard
-					key={channel._id}
-					channel={channel}
-					handleDeleteChannel={props.handleDeleteChannel}
-				/>
-			) : (
-				<div></div>
-			)
-		);
-	}
+	const channels = props.channels;
 
 	return (
 		<>
-			<div className="wrapper">
-				<h1>Lobby Details</h1>
-				<LobbyCard key={lobby._id} lobby={lobby} />
-			</div>
-			<div className="wrapper">
-				<h1>Channel List</h1>
-				<div>
-					<Link
-						style={{ color: 'black' }}
-						to={{ pathname: '/new-channel', state: { lobby } }}
-					>
-						ADD CHANNEL
+			<div>
+				<h1>{lobby.name}</h1>
+				<Dropdown
+					id="Dropdown_6"
+					options={{
+						alignment: 'left',
+						autoTrigger: true,
+						closeOnClick: true,
+						constrainWidth: true,
+						container: null,
+						coverTrigger: true,
+						hover: false,
+						inDuration: 150,
+						onCloseEnd: null,
+						onCloseStart: null,
+						onOpenEnd: null,
+						onOpenStart: null,
+						outDuration: 250,
+					}}
+					trigger={<i className="large material-icons">settings</i>}
+				>
+					<Link to={{ pathname: '/edit-server', state: { lobby, channels } }}>
+						EDIT
 					</Link>
+					<button onClick={() => props.handleDeleteLobby(lobby._id)}>
+						DELETE
+					</button>
+				</Dropdown>
+			</div>
+			<div>
+				<div>
+					<div>
+						<ChannelNavBar lobby={lobby} channels={channels} />
+					</div>
 				</div>
-				<div>{lobbyChild()}</div>
 			</div>
 		</>
 	);

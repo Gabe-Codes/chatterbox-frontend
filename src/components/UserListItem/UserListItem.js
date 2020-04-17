@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function UserListItem({ user, handleDeleteUser }) {
+export default function UserListItem({ user }) {
 	return (
 		<div className="row">
 			<div className="col s12 m6">

@@ -4,8 +4,11 @@ import './NavBar.css';
 
 const NavBar = (props) => {
 	let nav = props.user ? (
-		<ul className="sidenav sidenav-fixed invesible-top cyan lighten-2" id="mobile-nav">
-			<li>
+		<ul
+			className="mainnav sidenav sidenav-fixed invesible-top cyan lighten-2"
+			id="mobile-nav"
+		>
+			<h5>
 				<NavLink
 					style={{ color: 'white' }}
 					activeStyle={{
@@ -17,7 +20,7 @@ const NavBar = (props) => {
 				>
 					CHATTERBOX
 				</NavLink>
-			</li>
+			</h5>
 			<li>
 				<NavLink
 					style={{ color: 'white' }}
@@ -39,36 +42,21 @@ const NavBar = (props) => {
 						color: 'blue',
 					}}
 					exact
-					to="/users"
-				>
-					USERS LIST
-				</NavLink>
-			</li>
-			<li>
-				<NavLink
-					style={{ color: 'white' }}
-					activeStyle={{
-						fontWeight: 'bold',
-						color: 'blue',
-					}}
-					exact
-					to="/servers"
-				>
-					SERVERS LIST
-				</NavLink>
-			</li>
-			<li>
-				<NavLink
-					style={{ color: 'white' }}
-					activeStyle={{
-						fontWeight: 'bold',
-						color: 'blue',
-					}}
-					exact
 					to="/new-server"
 				>
 					CREATE SERVER
 				</NavLink>
+			</li>
+			<li>
+				{props.lobbies.map((lobby) => (
+					<NavLink
+						style={{ color: 'white' }}
+						exact
+						to={{ pathname: '/details-server', state: { lobby } }}
+					>
+						{lobby.name}
+					</NavLink>
+				))}
 			</li>
 			<li>
 				<NavLink
@@ -85,7 +73,10 @@ const NavBar = (props) => {
 			</li>
 		</ul>
 	) : (
-		<ul className="sidenav sidenav-fixed invesible-top cyan lighten-2" id="mobile-nav">
+		<ul
+			className="mainnav sidenav sidenav-fixed invesible-top cyan lighten-2"
+			id="mobile-nav"
+		>
 			<li>
 				<NavLink
 					style={{ color: 'white' }}
