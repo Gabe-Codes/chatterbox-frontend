@@ -8,10 +8,9 @@ export default function LobbyDetailsPage(props) {
 	const lobby = props.location.state.lobby;
 	const channels = props.channels;
 
-	return (
-		<>
-			<div>
-				<h1>{lobby.name}</h1>
+	function isOwner() {
+		if (props.user._id === lobby.owner._id) {
+			return (
 				<Dropdown
 					id="Dropdown_6"
 					options={{
@@ -38,6 +37,15 @@ export default function LobbyDetailsPage(props) {
 						DELETE
 					</button>
 				</Dropdown>
+			);
+		}
+	}
+
+	return (
+		<>
+			<div>
+				<h1>{lobby.name}</h1>
+				{isOwner()}
 			</div>
 			<div>
 				<div>

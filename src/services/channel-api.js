@@ -9,7 +9,7 @@ function create(channel) {
 		method: 'POST',
 		headers: { 'content-type': 'application/json' },
 		body: JSON.stringify(channel),
-	}).then((res) => res.json());
+	}).then(async (res) => await res.json());
 }
 
 function deleteOne(id) {

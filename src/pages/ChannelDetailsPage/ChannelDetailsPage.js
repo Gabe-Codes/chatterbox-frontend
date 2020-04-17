@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ChannelNavBar from '../../components/ChannelNavBar/ChannelNavBar';
 import AddMessage from '../../components/AddMessage/AddMessage';
+import MessageCard from '../../components/MessageCard/MessageCard';
 import { Dropdown } from 'react-materialize';
 
 export default function ChannelDetailsPage(props) {
@@ -41,8 +42,10 @@ export default function ChannelDetailsPage(props) {
 				</Dropdown>
 			</div>
             <div>
-                <h3>{path.channel.messages}</h3>
-                <AddMessage user={props.user} handleAddMessage={props.handleAddMessage}/>
+                {path.channel.messages.map((message) => (
+                    <MessageCard message={message}/>
+                ))}
+                <AddMessage user={props.user} handleAddMessage={props.handleAddMessage} channel={path.channel}/>
             </div>
 		</div>
 	);

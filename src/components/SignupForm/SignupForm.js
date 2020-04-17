@@ -58,7 +58,7 @@ export default class SignupForm extends Component {
 								onChange={this.handleChange}
 							/>
 							<span
-								class="helper-text"
+								className="helper-text"
 								data-error="Invalid Email Address"
 							></span>
 						</div>

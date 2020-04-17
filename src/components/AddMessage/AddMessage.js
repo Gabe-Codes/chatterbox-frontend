@@ -5,7 +5,8 @@ export default class AddMessage extends Component {
 		invalidForm: true,
 		formData: {
 			postedBy: this.props.user,
-			content: '',
+            content: '',
+            id: this.props.channel._id
 		},
 	};
 

@@ -27,6 +27,7 @@ export default class App extends Component {
 			users: [],
 			lobbies: [],
 			channels: [],
+			messages: []
 		};
 	}
 
@@ -276,7 +277,7 @@ export default class App extends Component {
 						path="/new-server"
 						render={({ history }) => (
 							<AddLobbyPage
-								user={this.state.user}
+								user={this.state.currentUser}
 								handleAddLobby={this.handleAddLobby}
 							/>
 						)}
@@ -296,6 +297,7 @@ export default class App extends Component {
 						path="/details-server"
 						render={({ location }) => (
 							<LobbyDetailsPage
+								user={this.state.currentUser}
 								channels={this.state.channels}
 								handleDeleteLobby={this.handleDeleteLobby}
 								location={location}

@@ -5,7 +5,7 @@ import './NavBar.css';
 const NavBar = (props) => {
 	let nav = props.user ? (
 		<ul
-			className="mainnav sidenav sidenav-fixed invesible-top cyan lighten-2"
+			className="mainnav sidenav sidenav-fixed invesible-top"
 			id="mobile-nav"
 		>
 			<h5>

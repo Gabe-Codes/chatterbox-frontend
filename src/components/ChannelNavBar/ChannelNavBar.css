@@ -1,6 +1,9 @@
 .channelnav {
-    z-index: 999 !important;
+    background-color: #719CB3 !important;
+    z-index: 0 !important;
     width: 12rem !important;
+    margin-left: 190px !important;
+    height: 300px !important;
 }
 
 h5 {

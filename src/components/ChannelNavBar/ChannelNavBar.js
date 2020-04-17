@@ -28,9 +28,9 @@ export default function ChannelNavBar({ channels, lobby }) {
 		<SideNav
 			fixed={true}
 			options={{
-				edge: 'right',
+				edge: 'left',
 			}}
-			className="channelnav cyan lighten-2"
+			className="channelnav"
 		>
 			<h5>CHANNELS</h5>
 			<li>
