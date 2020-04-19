@@ -18,9 +18,9 @@ CHATTERBOX is a Discord like app with less of a focus on gaming and more of a fo
 
 ![Signup](public/SignupPage.png)
 
-### Channel Page
+### Server Page
 
-![Channel](public/ChannelPage.png)
+![Server](public/ServerPage.png)
 
 ## Technologies Used
 
