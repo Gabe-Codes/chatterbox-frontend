@@ -1,9 +1,9 @@
-.lobby-title {
+.channel-title {
     margin-top: 0;
     color: white;
 }
 
-.lobby-container {
+.channel-container {
     background-color: #454545;
     margin: 3%;
     margin-left: 20%;
@@ -11,12 +11,8 @@
     height: 45.22rem;
 }
 
-.lobby-settings {
+.channel-settings {
     position: absolute;
     top: 6%;
     right: 3%;
-}
-
-.lobby-welcome {
-    color: white;
 }

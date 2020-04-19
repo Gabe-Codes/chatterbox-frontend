@@ -1,11 +1,21 @@
 .channel-form-title {
-    margin-left: 16% !important;
+    padding-top: 6%;
+    margin-left: 35% !important;
+    width: max-content;
 }
 
 .channel-form {
-    margin-left: 24% !important;
+    margin-left: 18% !important;
 }
 
 .channel-form-btns {
-    margin-left: 36% !important;
+    margin-left: 34% !important;
+}
+
+.channel-add-container {
+    background-color: #454545;
+    margin: 3%;
+    margin-left: 20% !important;
+    width: 77%;
+	height: 45.22rem;
 }

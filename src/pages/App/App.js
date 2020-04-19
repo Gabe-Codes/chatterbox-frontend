@@ -361,6 +361,7 @@ export default class App extends Component {
 						render={({ location }) => (
 							<ChannelDetailsPage
 								location={location}
+								channels={this.state.channels}
 								handleDeleteChannel={this.handleDeleteChannel}
 								handleAddMessage={this.handleAddMessage}
 								handleDeleteMessage={this.handleDeleteMessage}

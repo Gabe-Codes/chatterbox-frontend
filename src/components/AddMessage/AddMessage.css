@@ -1,0 +1,29 @@
+.message-container {
+    position: absolute;
+    margin-left: 1% !important;
+    bottom: 3.25%;
+    width: 40%;
+    height: 10%;
+    margin-bottom: 0% !important;
+}
+
+.message-wrapper {
+    padding: 0% !important;
+    margin: 0% !important;
+}
+
+.message-form {
+    background-color: #264e63;
+    margin-bottom: 0% !important;
+    border-radius: 1%;
+    width: 180%;
+}
+
+.message-input {
+    width: 80% !important;
+}
+
+.message-btn {
+    margin-top: 1%;
+    margin-left: 4%;
+}

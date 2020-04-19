@@ -29,7 +29,7 @@ export default function LobbyDetailsPage(props) {
 						onOpenStart: null,
 						outDuration: 250,
 					}}
-					trigger={<i className="large material-icons">settings</i>}
+					trigger={<i className="medium material-icons settings lobby-settings">settings</i>}
 				>
 					<Link to={{ pathname: '/edit-server', state: { lobby, channels } }}>
 						EDIT
@@ -56,9 +56,12 @@ export default function LobbyDetailsPage(props) {
 					<ChannelNavBar lobby={lobby} channels={channels} />
 				</div>
 			</div>
-			<div>
-				<h1>{lobby.name}</h1>
+			<div className="lobby-container">
+				<h1 className="lobby-title">{lobby.name}</h1>
 				{isOwner()}
+				<br/>
+				<br/>
+				<h4 className="lobby-welcome">Welcome to "{lobby.name}" server, enjoy the stay!</h4>
 			</div>
 		</>
 	);

@@ -42,7 +42,7 @@ export default class AddChannelPage extends Component {
 						channels={this.props.channels}
 					/>
 				</div>
-				<div className="row">
+				<div className="row channel-add-container">
 					<h2 className="channel-form-title">Create Channel</h2>
 					<form className="col s6 channel-form" onSubmit={this.handleSubmit}>
 						<div className="row">

@@ -36,7 +36,7 @@ export default class AddLobbyPage extends Component {
 						lobbies={this.props.lobbies}
 					/>
 				</div>
-				<div className="row">
+				<div className="row lobby-add-container">
 					<h2 className="server-form-title">Create Lobby</h2>
 					<form className="col s6 server-form" onSubmit={this.handleSubmit}>
 						<div className="row">

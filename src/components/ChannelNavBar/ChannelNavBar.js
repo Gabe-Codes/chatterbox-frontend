@@ -12,10 +12,6 @@ export default function ChannelNavBar({ channels, lobby }) {
 					<NavLink
 						className="navitem channel-navitem"
 						style={{ color: 'white' }}
-						activeStyle={{
-							fontWeight: 'bold',
-							color: 'blue',
-						}}
 						exact
 						to={{
 							pathname: '/details-channel',

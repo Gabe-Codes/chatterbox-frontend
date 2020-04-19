@@ -43,6 +43,7 @@ const NavBar = (props) => {
 				>
 					{props.user.username.toUpperCase()}
 				</NavLink>
+				<br/>
 				<Dropdown
 					className="dropdown"
 					id="Dropdown_10"
@@ -79,7 +80,7 @@ const NavBar = (props) => {
 			<div className="col s12 m6">
 				<div className="card login-card z-depth-0">
 					<div className="card-content white-text">
-						<span className="card-title">CHATTERBOX</span>
+						<span className="card-title chatterbox-title">CHATTERBOX</span>
 					</div>
 					<br />
 					<div>

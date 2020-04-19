@@ -5,23 +5,14 @@ import AddMessage from '../../components/AddMessage/AddMessage';
 import MessageCard from '../../components/MessageCard/MessageCard';
 import Navbar from '../../components/NavBar/NavBar';
 import { Dropdown } from 'react-materialize';
+import './ChannelDetailsPage.css';
 
 export default function ChannelDetailsPage(props) {
 	const path = props.location.state;
-	return (
-		<div>
-			<div>
-				<Navbar
-					user={props.user}
-					handleLogout={props.handleLogout}
-					lobbies={props.lobbies}
-				/>
-			</div>
-			<div>
-				<ChannelNavBar lobby={path.lobby} channels={path.channels} />
-			</div>
-			<div>
-				<h1>{path.channel.name}</h1>
+
+	function isOwner() {
+		if (props.user._id === path.lobby.owner._id) {
+			return (
 				<Dropdown
 					id="Dropdown_7"
 					options={{
@@ -39,7 +30,11 @@ export default function ChannelDetailsPage(props) {
 						onOpenStart: null,
 						outDuration: 250,
 					}}
-					trigger={<i className="large material-icons">settings</i>}
+					trigger={
+						<i className="medium material-icons settings channel-settings">
+							settings
+						</i>
+					}
 				>
 					<Link to={{ pathname: '/edit-channel', state: path.channel }}>
 						EDIT
@@ -48,16 +43,37 @@ export default function ChannelDetailsPage(props) {
 						DELETE
 					</button>
 				</Dropdown>
+			);
+		}
+	}
+
+	return (
+		<div>
+			<div>
+				<Navbar
+					user={props.user}
+					handleLogout={props.handleLogout}
+					lobbies={props.lobbies}
+				/>
 			</div>
 			<div>
-				{path.channel.messages.map((message) => (
-					<MessageCard message={message} />
-				))}
-				<AddMessage
-					user={props.user}
-					handleAddMessage={props.handleAddMessage}
-					channel={path.channel}
-				/>
+				<ChannelNavBar lobby={path.lobby} channels={props.channels} />
+			</div>
+			<div className="channel-container">
+				<h1 className="channel-title">{path.channel.name}</h1>
+				{isOwner()}
+				<div>
+					<div className="message-feed">
+						{path.channel.messages.map((message) => (
+							<MessageCard message={message} />
+						))}
+					</div>
+					<AddMessage
+						user={props.user}
+						handleAddMessage={props.handleAddMessage}
+						channel={path.channel}
+					/>
+				</div>
 			</div>
 		</div>
 	);

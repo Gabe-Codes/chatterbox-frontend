@@ -1,4 +1,4 @@
-.user-container {
+.home-container {
 	background-color: #454545;
     margin: 3%;
     margin-left: 10%;
@@ -6,12 +6,7 @@
 	height: 45.22rem;
 }
 
-.user-title {
+.home-welcome {
 	color: white;
-}
-
-.user-settings {
-    position: absolute;
-    top: 6%;
-    right: 3%;
+	padding-top: 17%;
 }
