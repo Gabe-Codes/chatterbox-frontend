@@ -32,13 +32,13 @@ export default class LoginPage extends Component {
 
 	render() {
 		return (
-			<div className="wrapper row">
-				<h2>Log In</h2>
+			<div className="row card-container">
+				<h2>Login</h2>
 				<form className="col s12" onSubmit={this.handleSubmit}>
 					<div className="row">
-						<div className="input-field col s12">
+						<div className="input-field col s4">
 							<input
-								className="validate"
+								className="input-text"
 								type="text"
 								placeholder="Username"
 								value={this.state.username}
@@ -48,9 +48,9 @@ export default class LoginPage extends Component {
 						</div>
 					</div>
 					<div className="row">
-						<div className="input-field col s12">
+						<div className="input-field col s4">
 							<input
-								className="validate"
+								className="input-text"
 								type="password"
 								placeholder="Password"
 								value={this.state.pw}
@@ -61,13 +61,23 @@ export default class LoginPage extends Component {
 					</div>
 					<div>
 						<div>
-							<button className="waves-effect waves-light btn deep-purple darken-1">
-								Log In
+							<button className="waves-effect waves-blue btn login-btn">
+								Login
 							</button>
 							&nbsp;&nbsp;&nbsp;
-							<button className="waves-effect waves-light btn deep-purple darken-1">
-								<Link style={{color: 'white'}} to="/">Cancel</Link>
-							</button>
+							<Link
+								className="waves-effect waves-blue btn login-btn"
+								to="/"
+							>
+								Cancel
+							</Link>
+							&nbsp;&nbsp;&nbsp;
+							<Link
+								className="waves-effect waves-blue btn login-btn"
+								to="/signup"
+							>
+								SIGNUP
+							</Link>
 						</div>
 					</div>
 				</form>

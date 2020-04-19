@@ -1,46 +1,21 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './NavBar.css';
+import { Dropdown } from 'react-materialize';
 
 const NavBar = (props) => {
 	let nav = props.user ? (
-		<ul
-			className="mainnav sidenav sidenav-fixed invesible-top"
-			id="mobile-nav"
-		>
-			<h5>
-				<NavLink
-					style={{ color: 'white' }}
-					activeStyle={{
-						fontWeight: 'bold',
-						color: 'blue',
-					}}
-					exact
-					to="/"
-				>
+		<ul className="mainnav sidenav sidenav-fixed invesible-top" id="mobile-nav">
+			<h5 className="title-container">
+				<NavLink className="title" style={{ color: 'white' }} exact to="/">
 					CHATTERBOX
 				</NavLink>
 			</h5>
+			<h5>Servers</h5>
 			<li>
 				<NavLink
-					style={{ color: 'white' }}
-					activeStyle={{
-						fontWeight: 'bold',
-						color: 'blue',
-					}}
-					exact
-					to={{ pathname: '/details', state: props.user }}
-				>
-					WELCOME,&nbsp;{props.user.username.toUpperCase()}
-				</NavLink>
-			</li>
-			<li>
-				<NavLink
-					style={{ color: 'white' }}
-					activeStyle={{
-						fontWeight: 'bold',
-						color: 'blue',
-					}}
+					className="navitem server-navitem"
+					style={{ color: 'lightgreen' }}
 					exact
 					to="/new-server"
 				>
@@ -50,6 +25,7 @@ const NavBar = (props) => {
 			<li>
 				{props.lobbies.map((lobby) => (
 					<NavLink
+						className="navitem server-navitem"
 						style={{ color: 'white' }}
 						exact
 						to={{ pathname: '/details-server', state: { lobby } }}
@@ -58,55 +34,81 @@ const NavBar = (props) => {
 					</NavLink>
 				))}
 			</li>
-			<li>
+			<div className="logout-container">
 				<NavLink
+					className="navitem"
 					style={{ color: 'white' }}
-					activeStyle={{
-						fontWeight: 'bold',
-						color: 'red',
-					}}
-					to=""
-					onClick={props.handleLogout}
+					exact
+					to={{ pathname: '/details', state: props.user }}
 				>
-					LOG OUT
+					{props.user.username.toUpperCase()}
 				</NavLink>
-			</li>
+				<Dropdown
+					className="dropdown"
+					id="Dropdown_10"
+					options={{
+						alignment: 'left',
+						autoTrigger: true,
+						closeOnClick: true,
+						constrainWidth: true,
+						container: null,
+						coverTrigger: true,
+						hover: false,
+						inDuration: 150,
+						onCloseEnd: null,
+						onCloseStart: null,
+						onOpenEnd: null,
+						onOpenStart: null,
+						outDuration: 250,
+					}}
+					trigger={<i className="small material-icons settings">settings</i>}
+				>
+					<Link
+						className="dropitem"
+						style={{ color: 'white' }}
+						to=""
+						onClick={props.handleLogout}
+					>
+						LOGOUT
+					</Link>
+				</Dropdown>
+			</div>
 		</ul>
 	) : (
-		<ul
-			className="mainnav sidenav sidenav-fixed invesible-top cyan lighten-2"
-			id="mobile-nav"
-		>
-			<li>
-				<NavLink
-					style={{ color: 'white' }}
-					activeStyle={{
-						fontWeight: 'bold',
-						color: 'blue',
-					}}
-					exact
-					to="/login"
-				>
-					LOGIN
-				</NavLink>
-			</li>
-			<li>
-				<NavLink
-					style={{ color: 'white' }}
-					activeStyle={{
-						fontWeight: 'bold',
-						color: 'blue',
-					}}
-					exact
-					to="/signup"
-				>
-					SIGNUP
-				</NavLink>
-			</li>
-		</ul>
+		<div className="row card-container">
+			<div className="col s12 m6">
+				<div className="card login-card z-depth-0">
+					<div className="card-content white-text">
+						<span className="card-title">CHATTERBOX</span>
+					</div>
+					<br />
+					<div>
+						<NavLink
+							className="waves-effect waves-blue btn login-btn"
+							style={{ color: 'white' }}
+							exact
+							to="/login"
+						>
+							LOGIN
+						</NavLink>
+					</div>
+					<br />
+					<br />
+					<br />
+					<div className="card z-depth-0">
+						<div className="card-content white-text">
+							<span>
+								CHATTERBOX is a Discord like app with less of a focus on gaming
+								and more of a focus on music and video integration.
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	);
 
-	return <div>{nav}</div>;
+	return <div className="parent">{nav}</div>;
 };
 
 export default NavBar;

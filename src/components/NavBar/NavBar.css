@@ -1,5 +1,117 @@
 .mainnav {
-    background-color: #264E63 !important;
-    z-index: 0 !important;
-    width: max-content !important;
+	background-color: #264e63 !important;
+	z-index: 999 !important;
+	width: 10% !important;
+}
+
+.title-container {
+	text-align: left;
+	margin-left: 8%;
+	margin-top: 2%;
+}
+
+.title {
+	font-family: 'Bangers', cursive;
+	position: relative;
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+
+.title::before {
+	content: '';
+	position: absolute;
+	width: 104%;
+	height: 16%;
+	bottom: 3%;
+	left: -2%;
+	z-index: -1;
+	background-color: red;
+}
+
+.server-navitem {
+	background-color: #719cb4;
+	margin: 5% 10%;
+	border-radius: 5%;
+	height: 10rem;
+}
+
+.server-navitem:hover {
+	background-color: #80b3ce !important;
+}
+
+.navitem {
+	padding: 0% !important;
+}
+
+.logout-container {
+    background-color: #719cb4;
+    position: absolute;
+    bottom: 7.3%;
+    padding: 0% 20%;
+}
+
+.settings {
+	color: white;
+}
+
+.dropdown > li {
+	margin: 0% !important;
+	background-color: red;
+}
+
+.dropitem {
+	background-color: red;
+}
+
+.dropdown > li:hover {
+	background-color: lightcoral !important;
+}
+
+.dropitem:hover {
+	background-color: lightcoral !important;
+}
+
+body {
+	background-color: #333333 !important;
+}
+
+.card-container {
+	background-color: #454545;
+	margin-top: 2.2%;
+	width: 95%;
+	height: 46.5rem;
+	border-radius: 1%;
+}
+
+.login-card {
+	background-color: #454545 !important;
+	width: 50%;
+	margin: 10% 80% !important;
+}
+
+.card-title {
+	font-family: 'Bangers', cursive;
+	position: relative !important;
+	font-size: 50px !important;
+	letter-spacing: 1px;
+	z-index: 0 !important;
+}
+
+.card-title::before {
+	content: '' !important;
+	position: absolute !important;
+	width: 79% !important;
+	height: 9% !important;
+	bottom: -11% !important;
+	left: 11% !important;
+	z-index: -1 !important;
+	background-color: red !important;
+}
+
+.login-btn {
+	background-color: #719cb4 !important;
+}
+
+.card-content {
+	background-color: #454545 !important;
 }

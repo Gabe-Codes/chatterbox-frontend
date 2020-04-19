@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../../components/NavBar/NavBar';
+import './AddLobbyPage.css';
 
 export default class AddLobbyPage extends Component {
 	state = {
@@ -27,13 +29,21 @@ export default class AddLobbyPage extends Component {
 	render() {
 		return (
 			<>
-				<div className="row wrapper">
-					<h2>Create Lobby</h2>
-					<form className="col s12" onSubmit={this.handleSubmit}>
+				<div>
+					<Navbar
+						user={this.props.user}
+						handleLogout={this.props.handleLogout}
+						lobbies={this.props.lobbies}
+					/>
+				</div>
+				<div className="row">
+					<h2 className="server-form-title">Create Lobby</h2>
+					<form className="col s6 server-form" onSubmit={this.handleSubmit}>
 						<div className="row">
-							<div className="input-field col s12">
+							<div className="input-field col s8">
 								<form>
 									<input
+										className="input-text"
 										type="text"
 										placeholder="Name"
 										autoComplete={'off'}
@@ -46,8 +56,9 @@ export default class AddLobbyPage extends Component {
 							</div>
 						</div>
 						<div className="row">
-							<div className="input-field col s12">
+							<div className="input-field col s8">
 								<input
+									className="input-text"
 									type="password"
 									placeholder="Password"
 									value={this.state.password}
@@ -57,10 +68,12 @@ export default class AddLobbyPage extends Component {
 							</div>
 						</div>
 						<div>
-							<div>
-								<button className="waves-effect waves-light btn deep-purple darken-1">Create</button>
+							<div className="server-form-btns">
+								<button className="waves-effect waves-blue btn login-btn">
+									Create
+								</button>
 								&nbsp;&nbsp;
-								<button className="waves-effect waves-light btn deep-purple darken-1">
+								<button className="waves-effect waves-blue btn login-btn">
 									<Link style={{ color: 'white' }} to="/">
 										Cancel
 									</Link>

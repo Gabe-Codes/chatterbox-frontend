@@ -6,17 +6,21 @@ import './ChannelNavBar.css';
 export default function ChannelNavBar({ channels, lobby }) {
 	function lobbyChild() {
 		return channels
-			.filter((channel) => channel.lobby === lobby._id)
+			.filter((channel) => channel.lobby._id === lobby._id)
 			.map((channel) => (
 				<li>
 					<NavLink
+						className="navitem channel-navitem"
 						style={{ color: 'white' }}
 						activeStyle={{
 							fontWeight: 'bold',
 							color: 'blue',
 						}}
 						exact
-						to={{ pathname: '/details-channel', state: { channel, lobby, channels } }}
+						to={{
+							pathname: '/details-channel',
+							state: { channel, lobby, channels },
+						}}
 					>
 						{channel.name}
 					</NavLink>
@@ -32,14 +36,11 @@ export default function ChannelNavBar({ channels, lobby }) {
 			}}
 			className="channelnav"
 		>
-			<h5>CHANNELS</h5>
+			<h5>Channels</h5>
 			<li>
 				<NavLink
-					style={{ color: 'red' }}
-					activeStyle={{
-						fontWeight: 'bold',
-						color: 'blue',
-					}}
+					className="navitem channel-navitem"
+					style={{ color: 'lightgreen' }}
 					exact
 					to={{ pathname: '/new-channel', state: { lobby } }}
 				>

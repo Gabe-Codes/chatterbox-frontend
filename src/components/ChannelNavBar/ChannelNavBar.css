@@ -1,11 +1,22 @@
 .channelnav {
     background-color: #719CB3 !important;
     z-index: 0 !important;
-    width: 12rem !important;
-    margin-left: 190px !important;
-    height: 300px !important;
+    width: 10% !important;
+    margin: 3% !important;
+    margin-left: 144.4px !important;
+    height: 88.5% !important;
 }
 
 h5 {
     color: white;
+}
+
+.channel-navitem {
+    background-color: #264e63;
+    margin: 5% 10%;
+	border-radius: 5%;
+}
+
+.channel-navitem:hover {
+    background-color: #2f617c !important;
 }

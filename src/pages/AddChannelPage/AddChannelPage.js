@@ -1,38 +1,55 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../../components/NavBar/NavBar';
+import ChannelNavBar from '../../components/ChannelNavBar/ChannelNavBar';
+import './AddChannelPage.css'
 
 export default class AddChannelPage extends Component {
-    state = {
-        invalidForm: true,
+	state = {
+		invalidForm: true,
 		formData: {
-            name: '',
+			name: '',
 			lobby: this.props.location.state.lobby,
 		},
 	};
 
 	handleSubmit = (e) => {
-        e.preventDefault();
+		e.preventDefault();
 		this.props.handleAddChannel(this.state.formData);
 	};
 
 	handleChange = (e) => {
-        const formData = {
-            ...this.state.formData,
+		const formData = {
+			...this.state.formData,
 			[e.target.name]: e.target.value,
 		};
 		this.setState({ formData });
 	};
 
 	render() {
-        return (
-            <>
-				<div className="row wrapper">
-					<h2>Create Channel</h2>
-					<form className="col s12" onSubmit={this.handleSubmit}>
+		return (
+			<>
+				<div>
+					<Navbar
+						user={this.props.user}
+						handleLogout={this.props.handleLogout}
+						lobbies={this.props.lobbies}
+					/>
+				</div>
+				<div>
+					<ChannelNavBar
+						lobby={this.props.location.state.lobby}
+						channels={this.props.channels}
+					/>
+				</div>
+				<div className="row">
+					<h2 className="channel-form-title">Create Channel</h2>
+					<form className="col s6 channel-form" onSubmit={this.handleSubmit}>
 						<div className="row">
-							<div className="input-field col s12">
+							<div className="input-field col s8">
 								<form>
 									<input
+										className="input-text"
 										type="text"
 										placeholder="Name"
 										autoComplete={'off'}
@@ -45,10 +62,12 @@ export default class AddChannelPage extends Component {
 							</div>
 						</div>
 						<div>
-							<div>
-								<button className="waves-effect waves-light btn deep-purple darken-1">Create</button>
+							<div className="channel-form-btns">
+								<button className="waves-effect waves-blue btn login-btn">
+									Create
+								</button>
 								&nbsp;&nbsp;
-								<button className="waves-effect waves-light btn deep-purple darken-1">
+								<button className="waves-effect waves-blue btn login-btn">
 									<Link style={{ color: 'white' }} to="/">
 										Cancel
 									</Link>

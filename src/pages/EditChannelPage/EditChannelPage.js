@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import 'materialize-css/dist/js/materialize.js';
-import 'materialize-css/dist/css/materialize.css';
+import Navbar from '../../components/NavBar/NavBar';
 export default class EditChannelPage extends Component {
 	state = {
 		invalidForm: false,
@@ -29,7 +28,13 @@ export default class EditChannelPage extends Component {
 	render() {
 		return (
 			<>
-				<div></div>
+				<div>
+					<Navbar
+						user={this.props.user}
+						handleLogout={this.props.handleLogout}
+						lobbies={this.props.lobbies}
+					/>
+				</div>
 				<div className="wrapper row">
 					<h1>Edit Channel</h1>
 					<form

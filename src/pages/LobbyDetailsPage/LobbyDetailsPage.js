@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './LobbyDetailsPage.css';
 import ChannelNavBar from '../../components/ChannelNavBar/ChannelNavBar';
+import Navbar from '../../components/NavBar/NavBar';
 import { Dropdown } from 'react-materialize';
 
 export default function LobbyDetailsPage(props) {
@@ -44,15 +45,20 @@ export default function LobbyDetailsPage(props) {
 	return (
 		<>
 			<div>
-				<h1>{lobby.name}</h1>
-				{isOwner()}
+				<Navbar
+					user={props.user}
+					handleLogout={props.handleLogout}
+					lobbies={props.lobbies}
+				/>
 			</div>
 			<div>
 				<div>
-					<div>
-						<ChannelNavBar lobby={lobby} channels={channels} />
-					</div>
+					<ChannelNavBar lobby={lobby} channels={channels} />
 				</div>
+			</div>
+			<div>
+				<h1>{lobby.name}</h1>
+				{isOwner()}
 			</div>
 		</>
 	);

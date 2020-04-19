@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import 'materialize-css/dist/js/materialize.js';
-import 'materialize-css/dist/css/materialize.css';
+import Navbar from '../../components/NavBar/NavBar';
 
 export default class EditUserPage extends Component {
 	state = {
@@ -30,10 +29,17 @@ export default class EditUserPage extends Component {
 	render() {
 		return (
 			<>
+				<div>
+					<Navbar
+						user={this.props.user}
+						handleLogout={this.props.handleLogout}
+						lobbies={this.props.lobbies}
+					/>
+				</div>
 				<div className="wrapper row">
 					<h1>Edit User</h1>
 					<form
-					className="col s12"
+						className="col s12"
 						ref={this.formRef}
 						autoComplete="off"
 						onSubmit={this.handleSubmit}
@@ -41,7 +47,7 @@ export default class EditUserPage extends Component {
 						<div className="input-field col s12">
 							<label>Email: </label>
 							<input
-							className="validate"
+								className="validate"
 								type="email"
 								name="email"
 								value={this.state.formData.email}
@@ -82,7 +88,9 @@ export default class EditUserPage extends Component {
 						</button>
 						&nbsp;&nbsp;
 						<button className="waves-effect waves-light btn deep-purple darken-1">
-						<Link style={{color: 'white'}} to={{ pathname: '/users' }}>CANCEL</Link>
+							<Link style={{ color: 'white' }} to={{ pathname: '/users' }}>
+								CANCEL
+							</Link>
 						</button>
 					</form>
 				</div>

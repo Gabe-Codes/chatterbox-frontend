@@ -1,7 +1,6 @@
 import tokenService from './tokenService';
 
-// const BASE_URL = '/api/users';
-const BASE_URL = 'https://chatterbox-back.herokuapp.com/api/users';
+const BASE_URL = process.env.DEV_USER_URL || 'https://chatterbox-back.herokuapp.com/api/users';
 
 async function signup(user) {
 		const response = await fetch(`${BASE_URL}/signup`, {

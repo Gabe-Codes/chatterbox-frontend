@@ -4,7 +4,7 @@ import userAPI from '../../services/user-api';
 import lobbyAPI from '../../services/lobby-api';
 import channelAPI from '../../services/channel-api';
 import messageAPI from '../../services/message-api';
-import Navbar from '../../components/NavBar/NavBar';
+import HomePage from '../../pages/HomePage/HomePage';
 import UserListPage from '../../pages/UserListPage/UserListPage';
 import SignupPage from '../../pages/SignupPage/SignupPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
@@ -27,7 +27,7 @@ export default class App extends Component {
 			users: [],
 			lobbies: [],
 			channels: [],
-			messages: []
+			messages: [],
 		};
 	}
 
@@ -219,18 +219,29 @@ export default class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<header>
-					<Navbar
-						user={this.state.currentUser}
-						handleLogout={this.handleLogout}
-						lobbies={this.state.lobbies}
-					/>
-				</header>
 				<main>
 					<Route
 						exact
+						path="/"
+						render={({ history }) => (
+							<HomePage
+								user={this.state.currentUser}
+								handleLogout={this.handleLogout}
+								lobbies={this.state.lobbies}
+							/>
+						)}
+					/>
+					<Route
+						exact
 						path="/users"
-						render={({ history }) => <UserListPage users={this.state.users} />}
+						render={({ history }) => (
+							<UserListPage
+								users={this.state.users}
+								user={this.state.currentUser}
+								handleLogout={this.handleLogout}
+								lobbies={this.state.lobbies}
+							/>
+						)}
 					/>
 					<Route
 						exact
@@ -259,6 +270,9 @@ export default class App extends Component {
 							<EditUserPage
 								location={location}
 								handleUpdateUser={this.handleUpdateUser}
+								user={this.state.currentUser}
+								handleLogout={this.handleLogout}
+								lobbies={this.state.lobbies}
 							/>
 						)}
 					/>
@@ -269,6 +283,9 @@ export default class App extends Component {
 							<UserDetailsPage
 								location={location}
 								handleDeleteUser={this.handleDeleteUser}
+								user={this.state.currentUser}
+								handleLogout={this.handleLogout}
+								lobbies={this.state.lobbies}
 							/>
 						)}
 					/>
@@ -279,6 +296,8 @@ export default class App extends Component {
 							<AddLobbyPage
 								user={this.state.currentUser}
 								handleAddLobby={this.handleAddLobby}
+								handleLogout={this.handleLogout}
+								lobbies={this.state.lobbies}
 							/>
 						)}
 					/>
@@ -289,6 +308,9 @@ export default class App extends Component {
 							<EditLobbyPage
 								handleUpdateLobby={this.handleUpdateLobby}
 								location={location}
+								user={this.state.currentUser}
+								handleLogout={this.handleLogout}
+								lobbies={this.state.lobbies}
 							/>
 						)}
 					/>
@@ -301,6 +323,8 @@ export default class App extends Component {
 								channels={this.state.channels}
 								handleDeleteLobby={this.handleDeleteLobby}
 								location={location}
+								handleLogout={this.handleLogout}
+								lobbies={this.state.lobbies}
 							/>
 						)}
 					/>
@@ -311,6 +335,10 @@ export default class App extends Component {
 							<AddChannelPage
 								handleAddChannel={this.handleAddChannel}
 								location={location}
+								channels={this.state.channels}
+								user={this.state.currentUser}
+								handleLogout={this.handleLogout}
+								lobbies={this.state.lobbies}
 							/>
 						)}
 					/>
@@ -321,6 +349,9 @@ export default class App extends Component {
 							<EditChannelPage
 								handleUpdateChannel={this.handleUpdateChannel}
 								location={location}
+								user={this.state.currentUser}
+								handleLogout={this.handleLogout}
+								lobbies={this.state.lobbies}
 							/>
 						)}
 					/>
@@ -334,6 +365,8 @@ export default class App extends Component {
 								handleAddMessage={this.handleAddMessage}
 								handleDeleteMessage={this.handleDeleteMessage}
 								user={this.state.currentUser}
+								handleLogout={this.handleLogout}
+								lobbies={this.state.lobbies}
 							/>
 						)}
 					/>

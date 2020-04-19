@@ -3,12 +3,20 @@ import { Link } from 'react-router-dom';
 import ChannelNavBar from '../../components/ChannelNavBar/ChannelNavBar';
 import AddMessage from '../../components/AddMessage/AddMessage';
 import MessageCard from '../../components/MessageCard/MessageCard';
+import Navbar from '../../components/NavBar/NavBar';
 import { Dropdown } from 'react-materialize';
 
 export default function ChannelDetailsPage(props) {
 	const path = props.location.state;
 	return (
 		<div>
+			<div>
+				<Navbar
+					user={props.user}
+					handleLogout={props.handleLogout}
+					lobbies={props.lobbies}
+				/>
+			</div>
 			<div>
 				<ChannelNavBar lobby={path.lobby} channels={path.channels} />
 			</div>
@@ -41,12 +49,16 @@ export default function ChannelDetailsPage(props) {
 					</button>
 				</Dropdown>
 			</div>
-            <div>
-                {path.channel.messages.map((message) => (
-                    <MessageCard message={message}/>
-                ))}
-                <AddMessage user={props.user} handleAddMessage={props.handleAddMessage} channel={path.channel}/>
-            </div>
+			<div>
+				{path.channel.messages.map((message) => (
+					<MessageCard message={message} />
+				))}
+				<AddMessage
+					user={props.user}
+					handleAddMessage={props.handleAddMessage}
+					channel={path.channel}
+				/>
+			</div>
 		</div>
 	);
 }

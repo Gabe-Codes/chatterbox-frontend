@@ -1,5 +1,4 @@
-// const BASE_URL = '/api/channels';
-const BASE_URL = 'https://chatterbox-back.herokuapp.com/api/channels';
+const BASE_URL = '/api/channels';
 
 function getAll() {
 	return fetch(BASE_URL).then((res) => res.json());
@@ -10,7 +9,7 @@ function create(channel) {
 		method: 'POST',
 		headers: { 'content-type': 'application/json' },
 		body: JSON.stringify(channel),
-	}).then(async (res) => await res.json());
+	}).then((res) => res.json());
 }
 
 function deleteOne(id) {
