@@ -29,12 +29,22 @@ export default function LobbyDetailsPage(props) {
 						onOpenStart: null,
 						outDuration: 250,
 					}}
-					trigger={<i className="medium material-icons settings lobby-settings">settings</i>}
+					trigger={
+						<i className="medium material-icons settings lobby-settings">
+							settings
+						</i>
+					}
 				>
-					<Link to={{ pathname: '/edit-server', state: { lobby, channels } }}>
+					<Link
+						className="waves-effect waves-blue btn edit-btn"
+						to={{ pathname: '/edit-server', state: { lobby, channels } }}
+					>
 						EDIT
 					</Link>
-					<button onClick={() => props.handleDeleteLobby(lobby._id)}>
+					<button
+						className="waves-effect waves-blue btn delete-btn"
+						onClick={() => props.handleDeleteLobby(lobby._id)}
+					>
 						DELETE
 					</button>
 				</Dropdown>
@@ -59,9 +69,11 @@ export default function LobbyDetailsPage(props) {
 			<div className="lobby-container">
 				<h1 className="lobby-title">{lobby.name}</h1>
 				{isOwner()}
-				<br/>
-				<br/>
-				<h4 className="lobby-welcome">Welcome to "{lobby.name}" server, enjoy the stay!</h4>
+				<br />
+				<br />
+				<h4 className="lobby-welcome">
+					Welcome to "{lobby.name}" server, enjoy the stay!
+				</h4>
 			</div>
 		</>
 	);

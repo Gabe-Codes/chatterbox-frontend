@@ -12,7 +12,7 @@ export default function MessageCard({ message, handleDeleteMessage }) {
 						<p>{message.createdAt}</p>
 					</div>
 					<div className="card-action">
-						<button onClick={() => handleDeleteMessage(message._id)}>
+						<button className="waves-effect waves-blue btn delete-btn" onClick={() => handleDeleteMessage(message._id)}>
 							DELETE
 						</button>
 					</div>

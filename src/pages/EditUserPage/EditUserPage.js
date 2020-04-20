@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/NavBar/NavBar';
+import './EditUserPage.css'
 
 export default class EditUserPage extends Component {
 	state = {
@@ -36,18 +37,17 @@ export default class EditUserPage extends Component {
 						lobbies={this.props.lobbies}
 					/>
 				</div>
-				<div className="wrapper row">
-					<h1>Edit User</h1>
+				<div className="row edituser-container">
+					<h1 className="edituser-title">Edit User</h1>
 					<form
-						className="col s12"
+						className="col s6 edituser-form"
 						ref={this.formRef}
 						autoComplete="off"
 						onSubmit={this.handleSubmit}
 					>
-						<div className="input-field col s12">
-							<label>Email: </label>
+						<div className="input-field col s8">
 							<input
-								className="validate"
+								className="validate input-text"
 								type="email"
 								name="email"
 								value={this.state.formData.email}
@@ -59,9 +59,9 @@ export default class EditUserPage extends Component {
 								data-error="Invalid Email Address"
 							></span>
 						</div>
-						<div className="input-field col s12">
-							<label>Username: </label>
+						<div className="input-field col s8">
 							<input
+							className="input-text"
 								type="text"
 								name="username"
 								value={this.state.formData.username}
@@ -69,9 +69,9 @@ export default class EditUserPage extends Component {
 								required
 							/>
 						</div>
-						<div className="input-field col s12">
-							<label>Display Name: </label>
+						<div className="input-field col s8">
 							<input
+							className="input-text"
 								type="text"
 								name="displayName"
 								value={this.state.formData.displayName}
@@ -79,19 +79,21 @@ export default class EditUserPage extends Component {
 								required
 							/>
 						</div>
+						<div className="edituser-form-btns">
 						<button
-							className="waves-effect waves-light btn"
+							className="waves-effect waves-light btn login-btn"
 							type="submit"
 							disabled={this.state.invalidForm}
-						>
-							SAVE USER
+							>
+							SAVE
 						</button>
 						&nbsp;&nbsp;
-						<button className="waves-effect waves-light btn deep-purple darken-1">
+						<button className="waves-effect waves-light btn login-btn">
 							<Link style={{ color: 'white' }} to={{ pathname: '/users' }}>
 								CANCEL
 							</Link>
 						</button>
+							</div>
 					</form>
 				</div>
 			</>

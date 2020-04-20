@@ -34,8 +34,16 @@ export default function UserDetailsPage(props) {
 							</i>
 						}
 					>
-						<Link to={{ pathname: '/edit', state: { user } }}>EDIT</Link>
-						<button onClick={() => props.handleDeleteUser(user._id)}>
+						<Link
+							className="waves-effect waves-blue btn edit-btn"
+							to={{ pathname: '/edit', state: { user } }}
+						>
+							EDIT
+						</Link>
+						<button
+							className="waves-effect waves-blue btn delete-btn"
+							onClick={() => props.handleDeleteUser(user._id)}
+						>
 							DELETE
 						</button>
 					</Dropdown>

@@ -36,10 +36,16 @@ export default function ChannelDetailsPage(props) {
 						</i>
 					}
 				>
-					<Link to={{ pathname: '/edit-channel', state: path.channel }}>
+					<Link
+						className="waves-effect waves-blue btn edit-btn"
+						to={{ pathname: '/edit-channel', state: path.channel }}
+					>
 						EDIT
 					</Link>
-					<button onClick={() => props.handleDeleteChannel(path.channel._id)}>
+					<button
+						className="waves-effect waves-blue btn delete-btn"
+						onClick={() => props.handleDeleteChannel(path.channel._id)}
+					>
 						DELETE
 					</button>
 				</Dropdown>
@@ -65,7 +71,10 @@ export default function ChannelDetailsPage(props) {
 				<div>
 					<div className="message-feed">
 						{path.channel.messages.map((message) => (
-							<MessageCard message={message} handleDeleteMessage={props.handleDeleteMessage}/>
+							<MessageCard
+								message={message}
+								handleDeleteMessage={props.handleDeleteMessage}
+							/>
 						))}
 					</div>
 					<AddMessage

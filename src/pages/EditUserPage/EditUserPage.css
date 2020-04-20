@@ -1,3 +1,22 @@
-.wrapper {
-    padding-left: 300px;
+.edituser-title {
+    padding-top: 6%;
+    margin-left: 35% !important;
+    width: max-content;
+    color: white;
+}
+
+.edituser-container {
+    background-color: #454545;
+    margin: 3%;
+    margin-left: 10% !important;
+    width: 87%;
+    height: 45.22rem;
+}
+
+.edituser-form {
+    margin-left: 14% !important;
+}
+
+.edituser-form-btns {
+    margin-left: 34% !important;
 }
