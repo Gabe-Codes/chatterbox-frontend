@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/NavBar/NavBar';
+import ChannelNavBar from '../../components/ChannelNavBar/ChannelNavBar';
+import './EditChannelPage.css';
 export default class EditChannelPage extends Component {
 	state = {
 		invalidForm: false,
@@ -35,18 +37,21 @@ export default class EditChannelPage extends Component {
 						lobbies={this.props.lobbies}
 					/>
 				</div>
-				<div className="wrapper row">
-					<h1>Edit Channel</h1>
+				<div>
+					<ChannelNavBar lobby={this.props.location.state.lobby} channels={this.props.channels} />
+				</div>
+				<div className="row editchannel-container">
+					<h1 className="editchannel-title">Edit Channel</h1>
 					<form
-						className="col s12"
+						className="col s6 editchannel-form"
 						ref={this.formRef}
 						autoComplete="off"
 						onSubmit={this.handleSubmit}
 					>
-						<div className="input-field col s12">
-							<label>Name: </label>
+						<div className="input-field col s8">
 							<input
-								className="validate"
+								className="input-text"
+								placeholder="Name"
 								type="text"
 								name="name"
 								value={this.state.formData.name}
@@ -54,19 +59,21 @@ export default class EditChannelPage extends Component {
 								required
 							/>
 						</div>
-						<button
-							className="waves-effect waves-light btn"
-							type="submit"
-							disabled={this.state.invalidForm}
-						>
-							SAVE CHANNEL
-						</button>
-						&nbsp;&nbsp;
-						<button className="waves-effect waves-light btn deep-purple darken-1">
-							<Link style={{ color: 'white' }} to="/">
-								CANCEL
-							</Link>
-						</button>
+						<div className="editchannel-form-btns">
+							<button
+								className="waves-effect waves-light btn login-btn"
+								type="submit"
+								disabled={this.state.invalidForm}
+							>
+								SAVE
+							</button>
+							&nbsp;&nbsp;
+							<button className="waves-effect waves-light btn login-btn">
+								<Link style={{ color: 'white' }} to="/">
+									CANCEL
+								</Link>
+							</button>
+						</div>
 					</form>
 				</div>
 			</>

@@ -65,7 +65,7 @@ export default function ChannelDetailsPage(props) {
 				<div>
 					<div className="message-feed">
 						{path.channel.messages.map((message) => (
-							<MessageCard message={message} />
+							<MessageCard message={message} handleDeleteMessage={props.handleDeleteMessage}/>
 						))}
 					</div>
 					<AddMessage

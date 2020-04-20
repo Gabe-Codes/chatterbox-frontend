@@ -1,0 +1,6 @@
+.message-card,
+.message-card > div,
+.message-card > div > h3, .test {
+	z-index: -99 !important;
+}
+

@@ -349,6 +349,7 @@ export default class App extends Component {
 							<EditChannelPage
 								handleUpdateChannel={this.handleUpdateChannel}
 								location={location}
+								channels={this.state.channels}
 								user={this.state.currentUser}
 								handleLogout={this.handleLogout}
 								lobbies={this.state.lobbies}
@@ -365,6 +366,7 @@ export default class App extends Component {
 								handleDeleteChannel={this.handleDeleteChannel}
 								handleAddMessage={this.handleAddMessage}
 								handleDeleteMessage={this.handleDeleteMessage}
+								handleUpdateMessage={this.handleUpdateMessage}
 								user={this.state.currentUser}
 								handleLogout={this.handleLogout}
 								lobbies={this.state.lobbies}

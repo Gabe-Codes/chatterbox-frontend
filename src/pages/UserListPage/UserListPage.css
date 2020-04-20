@@ -1,3 +1,7 @@
-.wrapper {
-  padding-left: 300px;
+.userlist-title {
+  color: white;
+}
+
+.userlist-card-container {
+  margin-left: 33%;
 }

@@ -1,0 +1,22 @@
+.editchannel-title {
+    padding-top: 6%;
+    margin-left: 35% !important;
+    width: max-content;
+    color: white;
+}
+
+.editchannel-form {
+    margin-left: 18% !important;
+}
+
+.editchannel-form-btns {
+    margin-left: 34% !important;
+}
+
+.editchannel-container {
+    background-color: #454545;
+    margin: 3%;
+    margin-left: 20% !important;
+    width: 77%;
+	height: 45.22rem;
+}

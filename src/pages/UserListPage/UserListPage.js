@@ -13,8 +13,8 @@ export default function UserListPage(props) {
 					lobbies={props.lobbies}
 				/>
 			</div>
-			<h1>User List</h1>
-			<div className="wrapper">
+			<h1 className="userlist-title">User List</h1>
+			<div className="userlist-card-container">
 				{props.users.map((user) => (
 					<UserListItem key={user._id} user={user} />
 				))}

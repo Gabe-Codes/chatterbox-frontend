@@ -1,0 +1,22 @@
+.editlobby-title {
+    padding-top: 6%;
+    margin-left: 35% !important;
+    width: max-content;
+    color: white;
+}
+
+.editlobby-container {
+    background-color: #454545;
+    margin: 3%;
+    margin-left: 10% !important;
+    width: 87%;
+    height: 45.22rem;
+}
+
+.editlobby-form {
+    margin-left: 14% !important;
+}
+
+.editlobby-form-btns {
+    margin-left: 34% !important;
+}

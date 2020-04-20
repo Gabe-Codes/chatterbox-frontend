@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/NavBar/NavBar';
+import './EditLobbyPage.css';
 export default class EditLobbyPage extends Component {
 	state = {
 		invalidForm: false,
@@ -29,24 +30,24 @@ export default class EditLobbyPage extends Component {
 		return (
 			<>
 				<div>
-				<Navbar
-					user={this.props.user}
-					handleLogout={this.props.handleLogout}
-					lobbies={this.props.lobbies}
-				/>
+					<Navbar
+						user={this.props.user}
+						handleLogout={this.props.handleLogout}
+						lobbies={this.props.lobbies}
+					/>
 				</div>
-				<div className="wrapper row">
-					<h1>Edit Lobby</h1>
+				<div className="row editlobby-container">
+					<h1 className="editlobby-title">Edit Lobby</h1>
 					<form
-						className="col s12"
+						className="col s6 editlobby-form"
 						ref={this.formRef}
 						autoComplete="off"
 						onSubmit={this.handleSubmit}
 					>
-						<div className="input-field col s12">
-							<label>Name: </label>
+						<div className="input-field col s8">
 							<input
-								className="validate"
+								className="input-text"
+								placeholder="Name"
 								type="text"
 								name="name"
 								value={this.state.formData.name}
@@ -54,19 +55,21 @@ export default class EditLobbyPage extends Component {
 								required
 							/>
 						</div>
-						<button
-							className="waves-effect waves-light btn"
-							type="submit"
-							disabled={this.state.invalidForm}
-						>
-							SAVE SERVER
-						</button>
-						&nbsp;&nbsp;
-						<button className="waves-effect waves-light btn deep-purple darken-1">
-							<Link style={{ color: 'white' }} to="/">
-								CANCEL
-							</Link>
-						</button>
+						<div className="editlobby-form-btns">
+							<button
+								className="waves-effect waves-light btn login-btn"
+								type="submit"
+								disabled={this.state.invalidForm}
+							>
+								SAVE
+							</button>
+							&nbsp;&nbsp;
+							<button className="waves-effect waves-light btn login-btn">
+								<Link style={{ color: 'white' }} to="/">
+									CANCEL
+								</Link>
+							</button>
+						</div>
 					</form>
 				</div>
 			</>
