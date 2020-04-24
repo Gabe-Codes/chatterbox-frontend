@@ -74,6 +74,9 @@ export default function ChannelDetailsPage(props) {
 							<MessageCard
 								message={message}
 								handleDeleteMessage={props.handleDeleteMessage}
+								channels={props.channels}
+								lobby={path.lobby}
+								user={props.user}
 							/>
 						))}
 					</div>

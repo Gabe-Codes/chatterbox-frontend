@@ -1,4 +1,4 @@
-const BASE_URL = process.env.DEV_MESSAGE_URL || 'https://chatterbox-back.herokuapp.com/api/messages';
+const BASE_URL = '/api/messages' || 'https://chatterbox-back.herokuapp.com/api/lobbies';
 
 function create(message) {
 	return fetch(BASE_URL, {
